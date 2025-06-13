@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fitness Coach - 4-Week Fitness Challenge</title>
+<!-- Google Fonts Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color: #111;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px 64px;
+  }
+
+  h1, h2, h3 {
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #111;
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+
+  /* Buttons */
+  button {
+    background-color: #2ecc71; /* Emerald green */
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    user-select: none;
+    box-shadow: 0 6px 12px rgba(46, 204, 113, 0.4);
+  }
+  button:hover,
+  button:focus {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(39, 174, 96, 0.6);
+  }
+  button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(39, 174, 96, 0.5);
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #111 30%, #2ecc71 100%);
+    color: white;
+    padding: 96px 16px 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero h1 {
+    font-size: 2.75rem;
+    color: #27ae60;
+    line-height: 1.1;
+    max-width: 700px;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    max-width: 480px;
+    margin-bottom: 32px;
+    font-weight: 500;
+    opacity: 0.9;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-width: 400px;
+    width: 80vw;
+    height: auto;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    user-select: none;
+  }
+
+  /* Benefits Section */
+  .benefits {
+    background: #f5f8fa;
+    padding: 64px 16px;
+    border-radius: 24px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    margin: -96px auto 96px;
+    max-width: 960px;
+    position: relative;
+    z-index: 1;
+  }
+  .benefits h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 48px;
+    color: #111;
+  }
+  .benefits-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 48px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .benefit-item {
+    flex: 1 1 220px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 32px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: box-shadow 0.3s ease;
+  }
+  .benefit-item:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .material-icons.benefit-icon {
+    font-size: 48px;
+    color: #2ecc71;
+  }
+  .benefit-text {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #111;
+  }
+
+  /* Social Proof Section */
+  .social-proof {
+    margin-bottom: 96px;
+    padding: 32px 16px;
+  }
+  .social-proof h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 48px;
+    color: #111;
+  }
+  .testimonials {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+  }
+  .testimonials img {
+    width: 200px;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  }
+  .testimonial-texts {
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .testimonial-texts p {
+    font-style: italic;
+    font-weight: 500;
+    color: #444;
+  }
+  .trust-signals {
+    font-weight: 600;
+    color: #2ecc71;
+    font-size: 1.2rem;
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  /* Who It’s For Section */
+  .who-it-is-for {
+    max-width: 680px;
+    margin: 0 auto 96px;
+    padding: 0 16px;
+  }
+  .who-it-is-for h2 {
+    font-size: 2rem;
+    margin-bottom: 32px;
+    text-align: center;
+    color: #111;
+  }
+  .who-it-is-for ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+  .who-it-is-for li {
+    font-size: 1.15rem;
+    padding-left: 36px;
+    margin-bottom: 24px;
+    position: relative;
+    color: #333;
+  }
+  .who-it-is-for li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+    color: #2ecc71;
+    font-size: 1.3rem;
+  }
+
+  /* About Coach Section */
+  .about-coach {
+    max-width: 920px;
+    margin: 0 auto 96px;
+    padding: 0 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-coach-text {
+    flex: 1 1 400px;
+    font-size: 1.1rem;
+    color: #222;
+  }
+  .about-coach-photo {
+    flex: 0 0 280px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+  .about-coach-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .about-coach-social {
+    margin-top: 16px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #2ecc71;
+  }
+
+  /* Pricing Section */
+  .pricing {
+    max-width: 680px;
+    margin: 0 auto 96px;
+    padding: 24px 16px;
+    background: #f5f8fa;
+    border-radius: 24px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    text-align: center;
+  }
+  .pricing h2 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    color: #111;
+  }
+  .pricing p {
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 32px;
+  }
+
+  /* Email Form Section */
+  .email-form {
+    max-width: 720px;
+    margin: 0 auto 96px;
+    padding: 24px 16px;
+    text-align: center;
+  }
+  .email-form h2 {
+    font-size: 2rem;
+    margin-bottom: 48px;
+    color: #111;
+  }
+  .email-input {
+    width: 100%;
+    max-width: 360px;
+    padding: 14px 16px;
+    margin: 8px 12px 24px 12px;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: 1.5px solid #ccc;
+    transition: border-color 0.25s ease;
+  }
+  .email-input:focus {
+    border-color: #2ecc71;
+    outline: none;
+  }
+
+  /* FAQ Section */
+  .faq {
+    max-width: 720px;
+    margin: 0 auto 96px;
+    padding: 16px;
+  }
+  .faq h2 {
+    font-size: 2rem;
+    margin-bottom: 48px;
+    text-align: center;
+    color: #111;
+  }
+  .faq-item {
+    margin-bottom: 32px;
+  }
+  .faq-question {
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 32px;
+    cursor: default;
+    user-select: none;
+  }
+  .faq-question::before {
+    content: "❓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.3rem;
+    color: #2ecc71;
+  }
+  .faq-answer {
+    font-size: 1rem;
+    color: #444;
+    padding-left: 32px;
+    line-height: 1.5;
+  }
+
+  /* Final CTA Section */
+  .final-cta {
+    background: #2ecc71;
+    color: white;
+    padding: 64px 16px;
+    text-align: center;
+    border-radius: 24px;
+    margin-bottom: 64px;
+    box-shadow: 0 8px 24px rgba(46, 204, 113, 0.4);
+  }
+  .final-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 32px;
+  }
+  .final-cta button {
+    background-color: white;
+    color: #2ecc71;
+    padding: 18px 48px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  .final-cta button:hover,
+  .final-cta button:focus {
+    background-color: #d6f5e1;
+  }
+
+  /* Responsive Layout */
+  @media (min-width: 641px) {
+    .hero {
+      flex-direction: row;
+      text-align: left;
+      padding: 96px 64px 96px 64px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hero-content {
+      max-width: 600px;
+      z-index: 2;
+    }
+    .hero-buttons {
+      justify-content: flex-start;
+    }
+    .hero img {
+      position: relative;
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+      margin-left: 64px;
+    }
+    .benefit-item {
+      flex: 1 1 220px;
+    }
+  }
+  @media (min-width: 1025px) {
+    main {
+      padding: 32px 48px 96px;
+    }
+    .benefits-list {
+      gap: 64px;
+    }
+    .who-it-is-for ul {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .about-coach {
+      gap: 48px;
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero" aria-label="Hero Section: Join my 4-week fitness challenge">
+    <div class="hero-content">
+      <h1>Join My 4-Week Fitness Challenge</h1>
+      <p>Sculpt your body, boost your energy, and build consistency — no gym needed.</p>
+      <div class="hero-buttons">
+        <button type="button" aria-label="Join the 4-week fitness challenge now">Join Now</button>
+        <button
+          type="button"
+          aria-label="Chat with the coach on WhatsApp"
+          onclick="window.open('https://wa.me/919999999999?text=Hi%20Coach%2C%20I%20am%20interested%20in%20the%204-week%20fitness%20challenge!', '_blank')"
+        >Chat on WhatsApp</button>
+      </div>
+    </div>
+    <img
+      src="data:image/jpeg;base64,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"
+      alt="Fitness coach in activewear guiding workout session"
+      loading="lazy"
+      width="400"
+      height="500"
+      onerror="this.style.display='none'"
+    />
+  </section>
+
+  <main>
+    <!-- Benefits Section -->
+    <section class="benefits" aria-labelledby="benefits-title">
+      <h2 id="benefits-title">What You’ll Get</h2>
+      <div class="benefits-list">
+        <article class="benefit-item" role="group" aria-label="Custom Workout Plan benefit">
+          <span class="material-icons benefit-icon" aria-hidden="true">fitness_center</span>
+          <p class="benefit-text">Custom Workout Plan</p>
+        </article>
+        <article class="benefit-item" role="group" aria-label="Easy Meal Guide benefit">
+          <span class="material-icons benefit-icon" aria-hidden="true">restaurant_menu</span>
+          <p class="benefit-text">Easy Meal Guide</p>
+        </article>
+        <article class="benefit-item" role="group" aria-label="Weekly Check-ins benefit">
+          <span class="material-icons benefit-icon" aria-hidden="true">event_available</span>
+          <p class="benefit-text">Weekly Check-ins</p>
+        </article>
+        <article class="benefit-item" role="group" aria-label="Progress Tracking App benefit">
+          <span class="material-icons benefit-icon" aria-hidden="true">phone_iphone</span>
+          <p class="benefit-text">Progress Tracking App</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof" aria-labelledby="social-proof-title">
+      <h2 id="social-proof-title">Transformations & Testimonials</h2>
+      <div class="testimonials" role="list">
+        <img src="https://t4.ftcdn.net/jpg/05/52/81/61/360_F_552816143_d7BgEqQoAqFsTnt5KaZKoSAdN8JCkl94.jpg" alt="Before transformation photo of client 1" loading="lazy" width="140" height="187" />
+       
+        <div class="testimonial-texts" role="listitem">
+          <p>"I lost 5kg in 4 weeks working with Coach Alex."</p>
+          <p class="trust-signals" aria-live="polite" aria-atomic="true">300+ clients coached</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who It's For Section -->
+    <section class="who-it-is-for" aria-labelledby="who-for-title">
+      <h2 id="who-for-title">Who It’s For</h2>
+      <ul>
+        <li>You struggle to stay consistent at the gym</li>
+        <li>You want to get fit from home</li>
+        <li>You’re tired of generic YouTube workouts</li>
+      </ul>
+    </section>
+
+    <!-- About the Coach Section -->
+    <section class="about-coach" aria-labelledby="about-coach-title">
+      <div class="about-coach-text">
+        <h2 id="about-coach-title">About the Coach</h2>
+        <p>I'm Alex, a certified trainer who's helped 300+ clients transform online.</p>
+        <p class="about-coach-social" aria-label="Social proof and certifications">Instagram Followers: 10k | Certifications: ACE, NASM</p>
+      </div>
+      <div class="about-coach-photo">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/09ec6dd7-a23d-4024-971f-28533ba01944.png" alt="Professional photo of Coach Alex" loading="lazy" width="280" height="350" />
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" aria-labelledby="pricing-title">
+      <h2 id="pricing-title">What’s Next</h2>
+      <p>Just ₹999 for full 4-week plan — everything included</p>
+      <button type="button" aria-label="Book your free 15-minute discovery call">Book your free 15-min discovery call</button>
+      <button
+        type="button"
+        aria-label="Chat with the coach on WhatsApp"
+        onclick="window.open('https://wa.me/919999999999?text=Hi%20Coach%2C%20I%20want%20to%20know%20more%20about%20the%20fitness%20challenge!', '_blank')"
+      >Chat on WhatsApp</button>
+    </section>
+
+    <!-- Email Form Section -->
+    <section class="email-form" aria-labelledby="email-form-title">
+      <h2 id="email-form-title">Get Started Now</h2>
+      <form onsubmit="event.preventDefault(); alert('Thank you for joining!')">
+        <input
+          type="text"
+          class="email-input"
+          placeholder="Name"
+          aria-label="Your name"
+          required
+          autocomplete="name"
+          maxlength="40"
+        />
+        <input
+          type="email"
+          class="email-input"
+          placeholder="Email"
+          aria-label="Your email address"
+          required
+          autocomplete="email"
+        />
+        <br />
+        <button type="submit">Join the Program</button>
+      </form>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Frequently Asked Questions</h2>
+
+      <article class="faq-item">
+        <p class="faq-question" id="q1" tabindex="0" aria-expanded="false" aria-controls="a1">Do I need gym equipment?</p>
+        <p class="faq-answer" id="a1" role="region" aria-labelledby="q1" hidden>No gym equipment is necessary — all workouts can be done at home with bodyweight or simple items.</p>
+      </article>
+
+      <article class="faq-item">
+        <p class="faq-question" id="q2" tabindex="0" aria-expanded="false" aria-controls="a2">Is this plan beginner-friendly?</p>
+        <p class="faq-answer" id="a2" role="region" aria-labelledby="q2" hidden>Yes! The plan is designed for all fitness levels with scalable exercises and clear instructions.</p>
+      </article>
+
+      <article class="faq-item">
+        <p class="faq-question" id="q3" tabindex="0" aria-expanded="false" aria-controls="a3">What if I don’t see results?</p>
+        <p class="faq-answer" id="a3" role="region" aria-labelledby="q3" hidden>If you don’t see results, reach out for support, we offer guidance to adjust your plan to help you succeed.</p>
+      </article>
+    </section>
+  </main>
+
+  <!-- Final CTA Section -->
+  <section class="final-cta" aria-label="Final call to action: Ready to transform your body in 4 weeks">
+    <h2>Ready to transform your body in just 4 weeks?</h2>
+    <button type="button" aria-label="Join the 4-week fitness challenge now">Join Now</button>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo" style="text-align:center; padding:16px 0; color: #555;">
+    <small>© 2023 Fitness Coach by Alex. All rights reserved.</small>
+  </footer>
+
+<script>
+  // FAQ accessibility toggle
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const expanded = question.getAttribute('aria-expanded') === 'true';
+      question.setAttribute('aria-expanded', !expanded);
+      const answer = document.getElementById(question.getAttribute('aria-controls'));
+      if (answer) {
+        answer.hidden = expanded;
+      }
+    });
+    question.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        question.click();
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
